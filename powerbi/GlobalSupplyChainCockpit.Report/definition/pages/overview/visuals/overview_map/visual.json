@@ -76,17 +76,17 @@
                 }
               }
             },
-            "bubbleMinRadius": {
+            "minBubbleRadius": {
               "expr": {
                 "Literal": {
-                  "Value": "3D"
+                  "Value": "3L"
                 }
               }
             },
-            "bubbleMaxRadius": {
+            "maxRadius": {
               "expr": {
                 "Literal": {
-                  "Value": "28D"
+                  "Value": "18L"
                 }
               }
             },

@@ -7,6 +7,10 @@ It answers four questions a supply chain or sales director asks every month:
 are we delivering on time, where do we lose money, which markets and customers carry the
 business, and where is the risk.
 
+![Walkthrough of the report](docs/media/demo_preview.gif)
+
+**▶ Full walkthrough with subtitles (50 s):** [docs/media/GlobalSupplyChainCockpit_demo.mp4](docs/media/GlobalSupplyChainCockpit_demo.mp4)
+
 ![Overview page](docs/images/page_1_overview.png)
 
 ---
@@ -33,7 +37,6 @@ Every number above is computed by the report's DAX measures on the data in `data
 | **Markets & customers** | Margin matrix market × segment, revenue by segment, country table |
 | **Risk & fraud** | Fraud rate by payment type and region, top countries by fraud, cancelled revenue |
 | *Country profile* | Hidden **drill-through** page (right-click a country → Drill through) |
-| *Tooltip* | Custom **report-page tooltip** shown when hovering a country |
 
 ![Delivery page](docs/images/page_2_delivery.png)
 
@@ -54,7 +57,7 @@ Every number above is computed by the report's DAX measures on the data in `data
 - **Insights written in DAX**: text cards that rewrite themselves with every filter.
 - **Conditional formatting by measure** (late rate and margin colours driven by DAX).
 - **What-if parameter**: "on time within N days of tolerance", built with `GENERATESERIES`.
-- **Drill-through** country profile with a Back button, and a **report-page tooltip**.
+- **Drill-through** country profile (right-click any country, or use the link in its tooltip).
 - **Custom design**: theme JSON, navigation rail and page backgrounds drawn in HTML and
   rendered as images, transparent visuals on top.
 - **PBIP format**: the semantic model (TMDL) and the report (PBIR JSON) are plain text, so
