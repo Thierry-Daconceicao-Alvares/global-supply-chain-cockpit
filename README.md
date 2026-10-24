@@ -9,7 +9,7 @@ business, and where is the risk.
 
 ![Walkthrough of the report](docs/media/demo_preview.gif)
 
-**▶ Full walkthrough with subtitles (45 s):** [docs/media/GlobalSupplyChainCockpit_demo.mp4](docs/media/GlobalSupplyChainCockpit_demo.mp4)
+**▶ Full walkthrough with subtitles (1 min):** [docs/media/GlobalSupplyChainCockpit_demo.mp4](docs/media/GlobalSupplyChainCockpit_demo.mp4)
 
 ![Overview page](docs/images/page_1_overview.png)
 
