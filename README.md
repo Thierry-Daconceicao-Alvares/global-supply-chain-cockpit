@@ -9,7 +9,9 @@ business, and where is the risk.
 
 ![Walkthrough of the report](docs/media/demo_preview.gif)
 
-**▶ Full walkthrough with subtitles (1 min):** [docs/media/GlobalSupplyChainCockpit_demo.mp4](docs/media/GlobalSupplyChainCockpit_demo.mp4)
+**▶ Full walkthrough, Full HD with English subtitles (1 min 23 s):** [docs/media/GlobalSupplyChainCockpit_demo.mp4](docs/media/GlobalSupplyChainCockpit_demo.mp4)
+
+The video is a screen recording of the report in Power BI Desktop: market filter, cross-filtering, the delay-tolerance what-if, page navigation and a drill-through to a country profile.
 
 ![Overview page](docs/images/page_1_overview.png)
 
@@ -26,6 +28,13 @@ business, and where is the risk.
 | Cancellations | **2,495** cancelled orders, **$1.3M** of revenue. |
 
 Every number above is computed by the report's DAX measures on the data in `data/`.
+
+## Recommendation
+
+Fix the delivery promise before the network. Every shipping mode takes longer than it promises
+(First Class: 1 day promised, 2 taken; Second Class: 2 promised, 4 taken), and every region is
+late at the same rate. Allowing one extra day of tolerance raises on-time delivery from 42.7% to
+76.3%, and First Class becomes 100% on time.
 
 ## The report
 
