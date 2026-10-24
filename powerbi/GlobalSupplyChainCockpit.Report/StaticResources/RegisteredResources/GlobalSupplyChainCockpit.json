@@ -1,48 +1,48 @@
 {
   "name": "Global Supply Chain Cockpit",
   "dataColors": [
-    "#4F5BD5",
-    "#12A594",
-    "#F5A524",
-    "#E5484D",
-    "#8E6CEF",
-    "#3B9EEB",
-    "#0B1F44",
+    "#7B8CFF",
+    "#22E1C3",
+    "#FFB547",
+    "#FF5C7A",
+    "#B57BFF",
+    "#38C8FF",
+    "#5B6B95",
     "#9AA4B2"
   ],
-  "foreground": "#14213D",
-  "foregroundNeutralSecondary": "#6B7280",
+  "foreground": "#E9EEFC",
+  "foregroundNeutralSecondary": "#8C9AC0",
   "foregroundNeutralTertiary": "#9AA4B2",
-  "background": "#FFFFFF",
-  "backgroundLight": "#F7F9FC",
-  "backgroundNeutral": "#E6EAF2",
-  "tableAccent": "#4F5BD5",
-  "good": "#12A594",
-  "neutral": "#F5A524",
-  "bad": "#E5484D",
-  "maximum": "#4F5BD5",
-  "center": "#C7CCF4",
-  "minimum": "#EEF0FB",
+  "background": "#0E1830",
+  "backgroundLight": "#111E3B",
+  "backgroundNeutral": "#1C294A",
+  "tableAccent": "#7B8CFF",
+  "good": "#22E1C3",
+  "neutral": "#FFB547",
+  "bad": "#FF5C7A",
+  "maximum": "#22E1C3",
+  "center": "#159C8C",
+  "minimum": "#0E3540",
   "textClasses": {
     "callout": {
       "fontSize": 22,
       "fontFace": "Segoe UI Semibold",
-      "color": "#14213D"
+      "color": "#E9EEFC"
     },
     "title": {
       "fontSize": 12,
       "fontFace": "Segoe UI Semibold",
-      "color": "#14213D"
+      "color": "#E9EEFC"
     },
     "header": {
       "fontSize": 11,
       "fontFace": "Segoe UI Semibold",
-      "color": "#14213D"
+      "color": "#E9EEFC"
     },
     "label": {
       "fontSize": 10,
       "fontFace": "Segoe UI",
-      "color": "#6B7280"
+      "color": "#8C9AC0"
     }
   },
   "visualStyles": {
@@ -75,9 +75,9 @@
         ],
         "visualTooltip": [
           {
-            "titleFontColor": "#14213D",
-            "valueFontColor": "#14213D",
-            "background": "#FFFFFF"
+            "titleFontColor": "#8C9AC0",
+            "valueFontColor": "#E9EEFC",
+            "background": "#111E3B"
           }
         ]
       }

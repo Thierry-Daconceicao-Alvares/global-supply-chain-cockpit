@@ -63,7 +63,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#4F5BD5'"
+                      "Value": "'#22E1C3'"
                     }
                   }
                 }
@@ -100,19 +100,6 @@
           }
         }
       ],
-      "mapStyles": [
-        {
-          "properties": {
-            "mapStyle": {
-              "expr": {
-                "Literal": {
-                  "Value": "'grayscale_light'"
-                }
-              }
-            }
-          }
-        }
-      ],
       "mapControls": [
         {
           "properties": {
@@ -123,17 +110,17 @@
                 }
               }
             },
-            "showZoomButtons": {
+            "showStylePicker": {
               "expr": {
                 "Literal": {
                   "Value": "false"
                 }
               }
             },
-            "showStylePicker": {
+            "defaultStyle": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "'grayscale_dark'"
                 }
               }
             }

@@ -20,27 +20,37 @@ def svg(name, color, size=18, sw=1.8):
 CSS = f"""
 *{{margin:0;padding:0;box-sizing:border-box}}
 body{{width:{W}px;height:{H}px;background:{BG};font-family:Inter,sans-serif;color:{INK};position:relative;overflow:hidden;font-feature-settings:'cv11','ss01'}}
-.rail{{position:absolute;left:0;top:0;width:{RAIL}px;height:{H}px;background:linear-gradient(170deg,{NAVY} 0%,#0E2552 55%,{NAVY2} 100%);color:#fff}}
-.rail:after{{content:'';position:absolute;right:-60px;top:-60px;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,rgba(79,91,213,.35),rgba(79,91,213,0) 70%)}}
-.brand{{position:absolute;left:20px;top:22px;display:flex;align-items:center;gap:10px}}
-.logo{{width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,{INDIGO},{TEAL});display:flex;align-items:center;justify-content:center}}
-.bt1{{font-size:12.5px;font-weight:800;letter-spacing:1.6px}} .bt2{{font-size:10px;color:#9FB0D6;letter-spacing:2.4px;font-weight:600;margin-top:1px}}
-.sect{{position:absolute;left:22px;top:92px;font-size:9px;letter-spacing:1.8px;color:#7F92C2;font-weight:700}}
-.nav{{position:absolute;left:12px;width:176px;height:40px;border-radius:10px;display:flex;align-items:center;gap:11px;padding-left:12px;font-size:13px;color:#C9D3EC;font-weight:500}}
-.nav.on{{background:rgba(255,255,255,.10);color:#fff;font-weight:600}}
-.nav.on:before{{content:'';position:absolute;left:-12px;top:9px;width:4px;height:22px;border-radius:0 3px 3px 0;background:{TEAL}}}
-.hint{{position:absolute;left:20px;width:160px;font-size:10px;line-height:1.45;color:#9FB0D6}}
-.hint b{{color:#fff;font-weight:600}}
-.foot{{position:absolute;left:20px;bottom:18px;width:164px;font-size:8.5px;line-height:1.5;color:#7F92C2}}
-.foot b{{color:#C9D3EC;font-weight:600}}
-.h1{{position:absolute;left:{X0}px;top:16px;font-size:23px;font-weight:750;letter-spacing:-.3px}}
-.h2{{position:absolute;left:{X0}px;top:47px;font-size:11.5px;color:{MUTED}}}
-.slab{{position:absolute;top:10px;font-size:9px;letter-spacing:1.2px;color:{MUTED};font-weight:700}}
-.pill{{position:absolute;top:24px;height:34px;border-radius:9px;background:#fff;border:1px solid {LINE};box-shadow:0 1px 2px rgba(16,24,40,.04)}}
-.card{{position:absolute;background:{CARD};border-radius:14px;border:1px solid {LINE};box-shadow:0 1px 2px rgba(16,24,40,.04),0 6px 18px -8px rgba(16,24,40,.10)}}
-.pt{{position:absolute;left:18px;top:13px;font-size:13px;font-weight:650}}
+body:before{{content:'';position:absolute;inset:0;background:
+  radial-gradient(900px 520px at 78% -10%,rgba(123,140,255,.22),rgba(123,140,255,0) 60%),
+  radial-gradient(700px 480px at 35% 115%,rgba(34,225,195,.14),rgba(34,225,195,0) 60%),
+  radial-gradient(520px 360px at 105% 70%,rgba(181,123,255,.14),rgba(181,123,255,0) 60%)}}
+body:after{{content:'';position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.05) 1px,transparent 1px);background-size:22px 22px;mask-image:linear-gradient(180deg,rgba(0,0,0,.9),rgba(0,0,0,.2))}}
+.rail{{position:absolute;left:0;top:0;width:{RAIL}px;height:{H}px;background:linear-gradient(180deg,rgba(10,18,44,.92),rgba(6,11,26,.96));border-right:1px solid rgba(123,140,255,.16);color:#fff;z-index:2;overflow:hidden}}
+.rail:after{{content:'';position:absolute;left:-80px;top:-90px;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(123,140,255,.30),rgba(123,140,255,0) 65%)}}
+.rail:before{{content:'';position:absolute;left:-60px;bottom:-120px;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,rgba(34,225,195,.16),rgba(34,225,195,0) 65%)}}
+.brand{{position:absolute;left:20px;top:22px;display:flex;align-items:center;gap:10px;z-index:3}}
+.logo{{width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,{INDIGO},{TEAL});display:flex;align-items:center;justify-content:center;box-shadow:0 0 18px rgba(34,225,195,.45)}}
+.bt1{{font-size:12.5px;font-weight:800;letter-spacing:1.6px}} .bt2{{font-size:10px;letter-spacing:2.4px;font-weight:700;margin-top:1px;background:linear-gradient(90deg,{TEAL},{INDIGO});-webkit-background-clip:text;color:transparent}}
+.sect{{position:absolute;left:22px;top:92px;font-size:9px;letter-spacing:1.8px;color:#5E6C96;font-weight:700;z-index:3}}
+.nav{{position:absolute;left:12px;width:176px;height:40px;border-radius:10px;display:flex;align-items:center;gap:11px;padding-left:12px;font-size:12.5px;white-space:nowrap;color:#A7B3D6;font-weight:500;z-index:3}}
+.nav.on{{background:linear-gradient(90deg,rgba(34,225,195,.18),rgba(123,140,255,.10));color:#fff;font-weight:600;border:1px solid rgba(34,225,195,.28);box-shadow:0 0 22px -6px rgba(34,225,195,.5)}}
+.nav.on:before{{content:'';position:absolute;left:-13px;top:9px;width:4px;height:22px;border-radius:0 3px 3px 0;background:{TEAL};box-shadow:0 0 10px {TEAL}}}
+.hint{{position:absolute;left:20px;width:160px;font-size:10px;line-height:1.45;color:#7F8DB5;z-index:3}}
+.hint b{{color:#E9EEFC;font-weight:600}}
+.foot{{position:absolute;left:20px;bottom:18px;width:164px;font-size:8.5px;line-height:1.5;color:#5E6C96;z-index:3}}
+.foot b{{color:#A7B3D6;font-weight:600}}
+.h1{{position:absolute;left:{X0}px;top:14px;font-size:24px;font-weight:800;letter-spacing:-.4px;background:linear-gradient(90deg,#FFFFFF 30%,#B9C4FF);-webkit-background-clip:text;color:transparent;z-index:2}}
+.h2{{position:absolute;left:{X0}px;top:47px;font-size:11.5px;color:{MUTED};z-index:2}}
+.slab{{position:absolute;top:10px;font-size:9px;letter-spacing:1.2px;color:#6F7DA6;font-weight:700;z-index:2}}
+.pill{{position:absolute;top:24px;height:34px;border-radius:9px;background:{CARD};border:1px solid rgba(123,140,255,.22);z-index:2}}
+.card{{position:absolute;background:{CARD};border-radius:16px;border:1px solid rgba(140,160,255,.14);box-shadow:0 18px 40px -22px rgba(0,0,0,.8),inset 0 1px 0 rgba(255,255,255,.06);z-index:2;overflow:hidden}}
+.card:after{{content:'';position:absolute;left:18px;right:18px;top:0;height:1px;background:linear-gradient(90deg,rgba(255,255,255,0),rgba(160,175,255,.45),rgba(255,255,255,0))}}
+.kpi{{background:linear-gradient(160deg,rgba(24,38,74,.98),{CARD} 70%)}}
+.kglow{{position:absolute;right:-40px;top:-50px;width:150px;height:150px;border-radius:50%;opacity:.28}}
+.kbar{{position:absolute;left:0;top:14px;width:3px;height:22px;border-radius:0 3px 3px 0}}
+.pt{{position:absolute;left:18px;top:13px;font-size:13px;font-weight:650;color:#F2F5FF}}
 .ps{{position:absolute;left:18px;top:31px;font-size:10px;color:{MUTED}}}
-.kl{{position:absolute;left:16px;top:13px;font-size:10px;letter-spacing:.9px;color:{MUTED};font-weight:700;text-transform:uppercase}}
+.kl{{position:absolute;left:16px;top:13px;font-size:10px;letter-spacing:.9px;color:#9AA8D0;font-weight:700;text-transform:uppercase}}
 .kdot{{position:absolute;right:14px;top:12px;width:24px;height:24px;border-radius:7px}}
 """
 ACC = [INDIGO, TEAL, VIOLET, CORAL, AMBER]
@@ -66,14 +76,14 @@ def page_html(name):
     if p['kpis']:
         for i, ((x, y, w, hh), lab) in enumerate(zip(tiles(len(p['kpis'])), p['kpis'])):
             c = ACC[i % len(ACC)]
-            h.append(f'<div class="card" style="left:{x}px;top:{y}px;width:{w}px;height:{hh}px"><div class="kl">{lab}</div><div class="kdot" style="background:{c}1A"><div style="position:absolute;left:8px;top:8px;width:8px;height:8px;border-radius:50%;background:{c}"></div></div></div>')
+            h.append(f'<div class="card kpi" style="left:{x}px;top:{y}px;width:{w}px;height:{hh}px"><div class="kglow" style="background:radial-gradient(circle,{c},transparent 65%)"></div><div class="kbar" style="background:{c};box-shadow:0 0 10px {c}"></div><div class="kl">{lab}</div><div class="kdot" style="background:{c}22;border:1px solid {c}55"><div style="position:absolute;left:7px;top:7px;width:8px;height:8px;border-radius:50%;background:{c};box-shadow:0 0 8px {c}"></div></div></div>')
     for key, (x, y, w, hh, t, s) in p['panels'].items():
         h.append(f'<div class="card" style="left:{x}px;top:{y}px;width:{w}px;height:{hh}px"><div class="pt">{t}</div><div class="ps">{s}</div></div>')
     return f'<!doctype html><html><head><meta charset="utf-8"><style>{CSS}</style></head><body>{"".join(h)}</body></html>'
 
 TOOLTIP_CSS = CSS.replace(f"width:{W}px;height:{H}px", "width:320px;height:200px")
 def tooltip_html():
-    return f'<!doctype html><html><head><meta charset="utf-8"><style>{TOOLTIP_CSS} body{{background:#fff}}</style></head><body><div style="position:absolute;inset:0;background:linear-gradient(135deg,{NAVY},{NAVY2})"></div><div style="position:absolute;left:14px;top:54px;right:14px;bottom:12px;border-radius:10px;background:#fff"></div></body></html>'
+    return f'<!doctype html><html><head><meta charset="utf-8"><style>{TOOLTIP_CSS} body{{background:#fff}}</style></head><body><div style="position:absolute;inset:0;background:linear-gradient(135deg,#0A1330,#121F4A)"></div><div style="position:absolute;right:-60px;top:-60px;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(34,225,195,.35),transparent 65%)"></div><div style="position:absolute;left:14px;top:54px;right:14px;bottom:12px;border-radius:10px;background:{CARD};border:1px solid rgba(140,160,255,.18)"></div></body></html>'
 
 async def main():
     from playwright.async_api import async_playwright

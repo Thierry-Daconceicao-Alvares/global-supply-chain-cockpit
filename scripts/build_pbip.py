@@ -215,16 +215,16 @@ MEASURES = [
             "Share of bank-transfer orders suspected of fraud."),
     # Colours
     Measure("Late Color",
-            'VAR r = [Late Rate]\nRETURN\n    SWITCH ( TRUE (), ISBLANK ( r ), "#CBD5E1", r >= 0.7, "#E5484D",'
-            ' r >= 0.5, "#F5A524", "#12A594" )', "", "Colours", "Red from 70% late, amber from 50%, green below."),
+            'VAR r = [Late Rate]\nRETURN\n    SWITCH ( TRUE (), ISBLANK ( r ), "#334155", r >= 0.7, "#FF5C7A",'
+            ' r >= 0.5, "#FFB547", "#22E1C3" )', "", "Colours", "Red from 70% late, amber from 50%, green below."),
     Measure("Margin Heat Color",
-            'VAR m = [Profit Margin]\nRETURN\n    SWITCH ( TRUE (), ISBLANK ( m ), "#FFFFFF", m >= 0.125, "#0B7A6A",'
-            ' m >= 0.12, "#2FA898", m >= 0.115, "#A5E0D6", "#E6F5F2" )', "", "Colours", "Heatmap colour of the margin."),
-    Measure("Margin Heat Font", 'IF ( [Profit Margin] >= 0.12, "#FFFFFF", "#14213D" )', "", "Colours",
+            'VAR m = [Profit Margin]\nRETURN\n    SWITCH ( TRUE (), ISBLANK ( m ), "#0E1830", m >= 0.125, "#22E1C3",'
+            ' m >= 0.12, "#159C8C", m >= 0.115, "#0F5E5A", "#0E3540" )', "", "Colours", "Heatmap colour of the margin."),
+    Measure("Margin Heat Font", 'IF ( [Profit Margin] >= 0.125, "#04121A", "#E9EEFC" )', "", "Colours",
             "Text colour on the heatmap."),
     Measure("Margin Color",
-            'VAR m = [Profit Margin]\nRETURN\n    SWITCH ( TRUE (), ISBLANK ( m ), "#CBD5E1", m < 0, "#E5484D",'
-            ' m < 0.1, "#F5A524", "#12A594" )', "", "Colours", "Red below 0, amber below 10%, green above."),
+            'VAR m = [Profit Margin]\nRETURN\n    SWITCH ( TRUE (), ISBLANK ( m ), "#334155", m < 0, "#FF5C7A",'
+            ' m < 0.1, "#FFB547", "#22E1C3" )', "", "Colours", "Red below 0, amber below 10%, green above."),
     # Labels
     Measure("Selected Country", 'SELECTEDVALUE ( Geography[country], "All countries" )', "", "Labels",
             "Country in context."),
@@ -482,7 +482,7 @@ def axes(cat_show=True, val_show=True, continuous=False, val_fmt_pct=False):
                               **({"axisType": lit("Scalar")} if continuous else {"axisType": lit("Categorical")}),
                               **AXIS_FONT),
         "valueAxis": props(show=lit(val_show), showAxisTitle=lit(False), gridlineShow=lit(val_show),
-                           gridlineColor=color("#EEF1F6"), gridlineStyle=lit("dotted"), **AXIS_FONT),
+                           gridlineColor=color(GRID), gridlineStyle=lit("dotted"), **AXIS_FONT),
         "legend": props(show=lit(False)),
     }
     return o
@@ -519,8 +519,10 @@ def slicers(p):
                      objects={"data": props(mode=lit("Dropdown")),
                               "header": props(show=lit(False)),
                               "items": props(fontSize=lit(10), fontColor=color(INK), fontFamily=lit(FONT),
-                                             background=color("#FFFFFF")),
+                                             background=color(CARD), outlineColor=color(GRID)),
                               "selection": props(selectAllCheckboxEnabled=lit(True))},
+                     vco={"background": props(show=lit(True), color=color(CARD), transparency=lit(0)),
+                          "border": props(show=lit(True), color=color(GRID), radius=lit(8))},
                      sync=sync))
     return out
 
@@ -621,18 +623,18 @@ def donut(name, box, cat, measure_name, disp, top=46):
 
 def table(name, box, projections, sort, widths, color_cols=(), top=48, tooltip=False, row_pad=6, text=10):
     x, y, w, h = inner(box, top=top, pad=12)
-    values = [{"properties": {"fontColorPrimary": color(INK), "backColorPrimary": color("#FFFFFF"),
-                              "backColorSecondary": color("#FAFBFD"), "fontSize": lit(text),
+    values = [{"properties": {"fontColorPrimary": color(INK), "backColorPrimary": color(CARD),
+                              "backColorSecondary": color(CARD2), "fontSize": lit(text),
                               "wordWrap": lit(False)}}]
     for measure_name, color_measure in color_cols:
-        values.append({"properties": {"backColor": measure_color(color_measure), "fontColor": color("#FFFFFF")},
+        values.append({"properties": {"backColor": measure_color(color_measure), "fontColor": color("#06101F")},
                        "selector": {"data": [{"dataViewWildcard": {"matchingOption": 1}}],
                                     "metadata": f"{M}.{measure_name}"}})
     return V(name, "tableEx", x, y, w, h, roles={"Values": projections}, sort=sort,
              objects={"grid": props(gridVertical=lit(False), gridHorizontal=lit(True),
-                                    gridHorizontalColor=color("#EEF1F6"), rowPadding=lit(row_pad),
-                                    textSize=lit(text), outlineColor=color("#FFFFFF")),
-                      "columnHeaders": props(fontColor=color(MUTED), backColor=color("#FFFFFF"), fontSize=lit(9),
+                                    gridHorizontalColor=color(GRID), rowPadding=lit(row_pad),
+                                    textSize=lit(text), outlineColor=color(CARD)),
+                      "columnHeaders": props(fontColor=color(MUTED), backColor=color(CARD), fontSize=lit(9),
                                              fontFamily=lit(FONT_SB), wordWrap=lit(True)),
                       "values": values, "total": props(totals=lit(False)),
                       "columnWidth": [{"properties": {"value": lit(wd)}, "selector": {"metadata": qr}}
@@ -651,8 +653,9 @@ def tolerance_slicer(p, box):
            objects={"data": props(mode=lit("Dropdown")),
                     "header": props(show=lit(False)),
                     "selection": props(singleSelect=lit(True), strictSingleSelect=lit(True)),
-                    "items": props(fontSize=lit(10), fontColor=color(INK), background=color("#FFFFFF"))},
-           vco={"border": props(show=lit(True), color=color(LINE), radius=lit(8))})
+                    "items": props(fontSize=lit(10), fontColor=color(INK), background=color(CARD), outlineColor=color(GRID))},
+           vco={"background": props(show=lit(True), color=color(CARD), transparency=lit(0)),
+                "border": props(show=lit(True), color=color(GRID), radius=lit(8))})
     return [lab, sl]
 
 
@@ -665,13 +668,12 @@ def overview():
     v.append(V(f"{p}_map", "azureMap", x, y, w, h,
                roles={"Category": [proj(col("Geography", "country"), "Country", True)],
                       "Size": [proj(mea("Revenue"), "Revenue")]},
-               objects={"bubbleLayer": props(bubbleColor=color(INDIGO), bubbleRadius=lit(4),
+               objects={"bubbleLayer": props(bubbleColor=color(TEAL), bubbleRadius=lit(4),
                                              minBubbleRadius={"expr": {"Literal": {"Value": "3L"}}},
                                              maxRadius={"expr": {"Literal": {"Value": "18L"}}},
                                              bubbleTransparency=lit(25)),
-                        "mapStyles": props(mapStyle=lit("grayscale_light")),
-                        "mapControls": props(autoZoom=lit(True), showZoomButtons=lit(False),
-                                             showStylePicker=lit(False))},
+                        "mapControls": props(autoZoom=lit(True), showStylePicker=lit(False),
+                                             defaultStyle=lit("grayscale_dark"))},
                tooltip_page=True))
     v.append(bar(f"{p}_market", panel(p, "market"), col("Markets", "market_label"), "Revenue", "Revenue", c=INDIGO))
     x, y, w, h = inner(panel(p, "insights"), top=44, pad=10, bottom=6)
@@ -684,8 +686,8 @@ def overview():
                             "wordWrap": props(show=lit(True)),
                             "categoryLabels": props(show=lit(True), color=color(INDIGO), fontSize=lit(8),
                                                     fontFamily=lit(FONT_SB))},
-                   vco={"background": props(show=lit(True), color=color("#F5F7FC"), transparency=lit(0)),
-                        "border": props(show=lit(True), color=color("#E6EAF2"), radius=lit(8))}))
+                   vco={"background": props(show=lit(True), color=color(CARD2), transparency=lit(0)),
+                        "border": props(show=lit(True), color=color(GRID), radius=lit(8))}))
     return v
 
 
@@ -743,10 +745,10 @@ def profit():
                       "Y": [proj(mea("Profit Margin"), "Profit margin")],
                       "Size": [proj(mea("Revenue"), "Revenue")]},
                objects={"categoryAxis": props(show=lit(True), showAxisTitle=lit(True), titleText=lit("Discount rate"),
-                                              gridlineShow=lit(True), gridlineColor=color("#EEF1F6"), **AXIS_FONT,
+                                              gridlineShow=lit(True), gridlineColor=color(GRID), **AXIS_FONT,
                                               titleColor=color(MUTED), titleFontSize=lit(9)),
                         "valueAxis": props(show=lit(True), showAxisTitle=lit(True), titleText=lit("Profit margin"),
-                                           gridlineShow=lit(True), gridlineColor=color("#EEF1F6"), **AXIS_FONT,
+                                           gridlineShow=lit(True), gridlineColor=color(GRID), **AXIS_FONT,
                                            titleColor=color(MUTED), titleFontSize=lit(9)),
                         "legend": props(show=lit(False)), **fill_measure("Margin Color")}))
     return v
@@ -768,8 +770,8 @@ def markets():
                                     "selector": {"data": [{"dataViewWildcard": {"matchingOption": 1}}],
                                                  "metadata": f"{M}.Profit Margin"}},
                                    {"properties": {"fontSize": lit(11)}}],
-                        "grid": props(rowPadding=lit(4), gridVertical=lit(True), gridVerticalColor=color("#FFFFFF"),
-                                      gridHorizontal=lit(True), gridHorizontalColor=color("#FFFFFF"),
+                        "grid": props(rowPadding=lit(4), gridVertical=lit(True), gridVerticalColor=color(CARD),
+                                      gridHorizontal=lit(True), gridHorizontalColor=color(CARD),
                                       gridVerticalWeight=lit(2), gridHorizontalWeight=lit(2)),
                         "columnHeaders": props(fontColor=color(MUTED), fontSize=lit(9), fontFamily=lit(FONT_SB),
                                                alignment=lit("Center")),
@@ -891,11 +893,11 @@ def page_objects(img):
 
 THEME = {
     "name": "Global Supply Chain Cockpit",
-    "dataColors": [INDIGO, TEAL, AMBER, CORAL, VIOLET, SKY, "#0B1F44", "#9AA4B2"],
+    "dataColors": [INDIGO, TEAL, AMBER, CORAL, VIOLET, SKY, "#5B6B95", "#9AA4B2"],
     "foreground": INK, "foregroundNeutralSecondary": MUTED, "foregroundNeutralTertiary": "#9AA4B2",
-    "background": "#FFFFFF", "backgroundLight": "#F7F9FC", "backgroundNeutral": "#E6EAF2",
+    "background": CARD, "backgroundLight": CARD2, "backgroundNeutral": GRID,
     "tableAccent": INDIGO, "good": TEAL, "neutral": AMBER, "bad": CORAL,
-    "maximum": INDIGO, "center": "#C7CCF4", "minimum": "#EEF0FB",
+    "maximum": TEAL, "center": "#159C8C", "minimum": "#0E3540",
     "textClasses": {
         "callout": {"fontSize": 22, "fontFace": FONT_SB, "color": INK},
         "title": {"fontSize": 12, "fontFace": FONT_SB, "color": INK},
@@ -905,7 +907,7 @@ THEME = {
     "visualStyles": {"*": {"*": {
         "background": [{"show": False}], "border": [{"show": False}], "dropShadow": [{"show": False}],
         "visualHeader": [{"show": False}], "title": [{"show": False}],
-        "visualTooltip": [{"titleFontColor": INK, "valueFontColor": INK, "background": "#FFFFFF"}],
+        "visualTooltip": [{"titleFontColor": MUTED, "valueFontColor": INK, "background": "#111E3B"}],
     }}},
 }
 

@@ -186,7 +186,7 @@ table _Measures
 	measure 'Late Color' =
 			VAR r = [Late Rate]
 			RETURN
-			    SWITCH ( TRUE (), ISBLANK ( r ), "#CBD5E1", r >= 0.7, "#E5484D", r >= 0.5, "#F5A524", "#12A594" )
+			    SWITCH ( TRUE (), ISBLANK ( r ), "#334155", r >= 0.7, "#FF5C7A", r >= 0.5, "#FFB547", "#22E1C3" )
 		displayFolder: Colours
 		lineageTag: bcd5661a-5428-5632-8f15-a95d1013a788
 
@@ -194,12 +194,12 @@ table _Measures
 	measure 'Margin Heat Color' =
 			VAR m = [Profit Margin]
 			RETURN
-			    SWITCH ( TRUE (), ISBLANK ( m ), "#FFFFFF", m >= 0.125, "#0B7A6A", m >= 0.12, "#2FA898", m >= 0.115, "#A5E0D6", "#E6F5F2" )
+			    SWITCH ( TRUE (), ISBLANK ( m ), "#0E1830", m >= 0.125, "#22E1C3", m >= 0.12, "#159C8C", m >= 0.115, "#0F5E5A", "#0E3540" )
 		displayFolder: Colours
 		lineageTag: 11431623-cdad-599f-9acf-34e32332b36c
 
 	/// Text colour on the heatmap.
-	measure 'Margin Heat Font' = IF ( [Profit Margin] >= 0.12, "#FFFFFF", "#14213D" )
+	measure 'Margin Heat Font' = IF ( [Profit Margin] >= 0.125, "#04121A", "#E9EEFC" )
 		displayFolder: Colours
 		lineageTag: 57d3e29d-9724-58cd-960f-cbf561da2f85
 
@@ -207,7 +207,7 @@ table _Measures
 	measure 'Margin Color' =
 			VAR m = [Profit Margin]
 			RETURN
-			    SWITCH ( TRUE (), ISBLANK ( m ), "#CBD5E1", m < 0, "#E5484D", m < 0.1, "#F5A524", "#12A594" )
+			    SWITCH ( TRUE (), ISBLANK ( m ), "#334155", m < 0, "#FF5C7A", m < 0.1, "#FFB547", "#22E1C3" )
 		displayFolder: Colours
 		lineageTag: 4e154162-92de-5e46-96c5-364216ad4ebe
 
