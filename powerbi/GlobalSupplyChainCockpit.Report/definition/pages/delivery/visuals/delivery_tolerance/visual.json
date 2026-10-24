@@ -115,7 +115,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#E9EEFC'"
+                      "Value": "'#14213D'"
                     }
                   }
                 }
@@ -126,18 +126,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#0E1830'"
-                    }
-                  }
-                }
-              }
-            },
-            "outlineColor": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#1C294A'"
+                      "Value": "'#FFFFFF'"
                     }
                   }
                 }
@@ -154,25 +143,7 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
-                }
-              }
-            },
-            "color": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#0E1830'"
-                    }
-                  }
-                }
-              }
-            },
-            "transparency": {
-              "expr": {
-                "Literal": {
-                  "Value": "0D"
+                  "Value": "false"
                 }
               }
             }
@@ -194,7 +165,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#1C294A'"
+                      "Value": "'#E6EAF2'"
                     }
                   }
                 }

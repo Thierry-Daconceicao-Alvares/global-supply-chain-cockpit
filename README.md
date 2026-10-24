@@ -55,7 +55,6 @@ late at the same rate. Allowing one extra day of tolerance raises on-time delive
 ![Profitability](docs/images/page_3_profit.png)
 ![Markets & customers](docs/images/page_4_markets.png)
 ![Risk & fraud](docs/images/page_5_risk.png)
-![Country profile (drill-through)](docs/images/page_6_country_profile.png)
 
 </details>
 
@@ -68,8 +67,8 @@ late at the same rate. Allowing one extra day of tolerance raises on-time delive
 - **Conditional formatting by measure** (late rate and margin colours driven by DAX).
 - **What-if parameter**: "on time within N days of tolerance", built with `GENERATESERIES`.
 - **Drill-through** country profile (right-click any country, or use the link in its tooltip).
-- **Custom dark design**: theme JSON, glowing KPI cards, navigation rail and page backgrounds
-  drawn in HTML and rendered as images, transparent visuals on top, dark map style.
+- **Custom design**: theme JSON, navigation rail and page backgrounds drawn in HTML and
+  rendered as images, transparent visuals on top.
 - **PBIP format**: the semantic model (TMDL) and the report (PBIR JSON) are plain text, so
   every change is visible in Git.
 
