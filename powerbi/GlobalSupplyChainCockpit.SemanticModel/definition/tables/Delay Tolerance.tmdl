@@ -1,0 +1,16 @@
+/// What-if parameter: days of delay still counted as on time.
+table 'Delay Tolerance'
+	lineageTag: f1697869-87ab-5a55-9849-587e1f6aba51
+
+	column 'Delay Tolerance'
+		dataType: int64
+		formatString: 0
+		lineageTag: 149a6742-8e28-5765-a555-950b9c381f3b
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		annotation SummarizationSetBy = User
+
+	partition 'Delay Tolerance' = calculated
+		mode: import
+		source = GENERATESERIES ( 0, 3, 1 )

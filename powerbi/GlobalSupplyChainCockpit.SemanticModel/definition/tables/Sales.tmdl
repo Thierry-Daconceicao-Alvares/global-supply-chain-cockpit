@@ -1,0 +1,281 @@
+/// One row per order line (DataCo Smart Supply Chain, January 2015 to September 2017).
+table Sales
+	lineageTag: ae8b3989-9043-55d3-ad84-f54d0ec5f09b
+
+	/// Order line number.
+	column order_item_id
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 71349e61-4341-5021-ab9f-d0807d03c80c
+		summarizeBy: none
+		sourceColumn: order_item_id
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Order number.
+	column order_id
+		dataType: int64
+		formatString: 0
+		lineageTag: c5b78e85-bb15-58de-8d12-6190f8bc22f2
+		summarizeBy: none
+		sourceColumn: order_id
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Order date.
+	column order_date
+		dataType: dateTime
+		formatString: dd mmm yyyy
+		lineageTag: 9d30544c-9f8f-5617-9d60-69dd97e6fa49
+		summarizeBy: none
+		sourceColumn: order_date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	/// Shipping date.
+	column ship_date
+		dataType: dateTime
+		formatString: dd mmm yyyy
+		lineageTag: fd1e2aa5-d5ed-5361-9ceb-bdb46e0ad5c2
+		summarizeBy: none
+		sourceColumn: ship_date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column customer_id
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 70257d3c-4fc7-51f4-8a25-35bc1877fa68
+		summarizeBy: none
+		sourceColumn: customer_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_id
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: ec0a725d-8c36-549a-b66f-b01bfdb7b5d7
+		summarizeBy: none
+		sourceColumn: product_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column country
+		dataType: string
+		isHidden
+		lineageTag: c069cc79-5cb2-55c0-9502-e4b2cdfd79a6
+		summarizeBy: none
+		sourceColumn: country
+
+		annotation SummarizationSetBy = Automatic
+
+	column market
+		dataType: string
+		isHidden
+		lineageTag: 68bd025c-26fb-5938-8071-fad9a19ba2f3
+		summarizeBy: none
+		sourceColumn: market
+
+		annotation SummarizationSetBy = Automatic
+
+	column region
+		dataType: string
+		isHidden
+		lineageTag: eea787e4-d79e-5354-9af9-2a4239d79b63
+		summarizeBy: none
+		sourceColumn: region
+
+		annotation SummarizationSetBy = Automatic
+
+	column shipping_mode
+		dataType: string
+		isHidden
+		lineageTag: 84819aa4-560e-5b6e-98fb-1f037f881b32
+		summarizeBy: none
+		sourceColumn: shipping_mode
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Delivery status as recorded.
+	column delivery_status
+		dataType: string
+		lineageTag: 258f7e9b-7f1b-5643-931e-39d6bbc3b4b1
+		summarizeBy: none
+		sourceColumn: delivery_status
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Order status as recorded.
+	column order_status
+		dataType: string
+		lineageTag: b3c776a9-c1a3-50b0-a4bf-3b2a1e196533
+		summarizeBy: none
+		sourceColumn: order_status
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Payment type.
+	column payment_type
+		dataType: string
+		lineageTag: 43a1cf79-28f2-5967-bb1e-7bc63caf5488
+		summarizeBy: none
+		sourceColumn: payment_type
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Customer segment.
+	column segment
+		dataType: string
+		lineageTag: 9c344669-eb56-5acb-8ca4-45f1aa2bb06b
+		summarizeBy: none
+		sourceColumn: segment
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Units ordered.
+	column quantity
+		dataType: int64
+		formatString: #,0
+		lineageTag: d7701675-8d5c-5042-bc99-6e4e3687cbcf
+		summarizeBy: sum
+		sourceColumn: quantity
+
+		annotation SummarizationSetBy = Automatic
+
+	column gross_sales_amt
+		dataType: double
+		isHidden
+		formatString: $#,0
+		lineageTag: d34bb0e1-4f38-5211-9b98-be562e68806a
+		summarizeBy: sum
+		sourceColumn: gross_sales_amt
+
+		annotation SummarizationSetBy = Automatic
+
+	column discount_amt
+		dataType: double
+		isHidden
+		formatString: $#,0
+		lineageTag: 3d3828d7-8e22-5c55-a61f-279f8270d4d6
+		summarizeBy: sum
+		sourceColumn: discount_amt
+
+		annotation SummarizationSetBy = Automatic
+
+	column revenue_amt
+		dataType: double
+		isHidden
+		formatString: $#,0
+		lineageTag: 342242aa-e062-59a8-b0f0-323efa0590be
+		summarizeBy: sum
+		sourceColumn: revenue_amt
+
+		annotation SummarizationSetBy = Automatic
+
+	column profit_amt
+		dataType: double
+		isHidden
+		formatString: $#,0
+		lineageTag: 8d039256-1f8d-5d8a-bf30-9e104feefa28
+		summarizeBy: sum
+		sourceColumn: profit_amt
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Actual shipping days.
+	column days_real
+		dataType: int64
+		formatString: 0
+		lineageTag: a3d90e1e-6f48-5a0a-a984-da1f4048ee86
+		summarizeBy: none
+		sourceColumn: days_real
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Scheduled shipping days.
+	column days_scheduled
+		dataType: int64
+		formatString: 0
+		lineageTag: 0c657045-bf01-5df3-8325-053afca16105
+		summarizeBy: none
+		sourceColumn: days_scheduled
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_late
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 326ccef0-f7c7-5f0d-8746-5701eafbe3a8
+		summarizeBy: sum
+		sourceColumn: is_late
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_cancelled
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 62e2a910-0b60-5314-934a-fe5977258c8f
+		summarizeBy: sum
+		sourceColumn: is_cancelled
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_fraud
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: e76209a5-0f6b-5fca-9884-b38d0b8fd1cf
+		summarizeBy: sum
+		sourceColumn: is_fraud
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Actual minus scheduled shipping days.
+	column delay_days
+		dataType: int64
+		formatString: 0
+		lineageTag: eb088cc1-dfcd-51de-85b5-6bc655efbef8
+		summarizeBy: none
+		sourceColumn: delay_days
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_loss
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 027f9a4e-b53a-5a70-b6d5-809899d9175d
+		summarizeBy: sum
+		sourceColumn: is_loss
+
+		annotation SummarizationSetBy = Automatic
+
+	column shipped
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: e2821ffa-3bea-5a02-bf48-a02e74d3c43d
+		summarizeBy: sum
+		sourceColumn: shipped
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Sales = m
+		mode: import
+		source =
+				let
+				    Root = Text.TrimEnd(DataFolder, "\") & "\",
+				    Source = Parquet.Document(File.Contents(Root & "sales.parquet"))
+				in
+				    Source
+
+	annotation PBI_ResultType = Table

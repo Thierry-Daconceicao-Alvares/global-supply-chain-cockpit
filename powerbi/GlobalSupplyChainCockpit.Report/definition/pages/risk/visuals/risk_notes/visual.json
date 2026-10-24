@@ -1,0 +1,188 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.2.0/schema.json",
+  "name": "risk_notes",
+  "position": {
+    "x": 756,
+    "y": 510,
+    "z": 18000,
+    "height": 188,
+    "width": 496,
+    "tabOrder": 18000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Source · ",
+                    "textStyle": {
+                      "fontSize": "9pt",
+                      "color": "#14213D",
+                      "fontWeight": "bold"
+                    }
+                  },
+                  {
+                    "value": "DataCo Smart Supply Chain for Big Data Analysis (Constante, Silva & Pereira, Mendeley Data, CC BY 4.0), also published on Kaggle.",
+                    "textStyle": {
+                      "fontSize": "9pt",
+                      "color": "#6B7280"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Scope · ",
+                    "textStyle": {
+                      "fontSize": "9pt",
+                      "color": "#14213D",
+                      "fontWeight": "bold"
+                    }
+                  },
+                  {
+                    "value": "January 2015 to September 2017. Later orders are left out: the catalogue falls from about 50 products to under 20 and orders shrink to a single line.",
+                    "textStyle": {
+                      "fontSize": "9pt",
+                      "color": "#6B7280"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Markets · ",
+                    "textStyle": {
+                      "fontSize": "9pt",
+                      "color": "#14213D",
+                      "fontWeight": "bold"
+                    }
+                  },
+                  {
+                    "value": "Each market is recorded over its own periods in the source, so markets are compared over the whole period, not month by month.",
+                    "textStyle": {
+                      "fontSize": "9pt",
+                      "color": "#6B7280"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Definitions · ",
+                    "textStyle": {
+                      "fontSize": "9pt",
+                      "color": "#14213D",
+                      "fontWeight": "bold"
+                    }
+                  },
+                  {
+                    "value": "Revenue is net of discounts. A late order arrives after its scheduled date; cancelled shipments are left out of delivery rates.",
+                    "textStyle": {
+                      "fontSize": "9pt",
+                      "color": "#6B7280"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Privacy · ",
+                    "textStyle": {
+                      "fontSize": "9pt",
+                      "color": "#14213D",
+                      "fontWeight": "bold"
+                    }
+                  },
+                  {
+                    "value": "Customer names, e-mails and addresses are not loaded.",
+                    "textStyle": {
+                      "fontSize": "9pt",
+                      "color": "#6B7280"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualHeader": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "dropShadow": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

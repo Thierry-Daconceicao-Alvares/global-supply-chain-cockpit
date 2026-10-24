@@ -1,0 +1,43 @@
+/// The five markets.
+table Markets
+	lineageTag: c194d386-6d31-5299-a936-3c286bf893fe
+
+	column market
+		dataType: string
+		isHidden
+		lineageTag: baaebea1-cc87-5ed6-8c27-82cfc0991170
+		summarizeBy: none
+		sourceColumn: market
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Market.
+	column market_label
+		dataType: string
+		lineageTag: d7786f9b-32d4-56a4-8852-d6f3eb52f5e9
+		summarizeBy: none
+		sourceColumn: market_label
+		sortByColumn: market_order
+
+		annotation SummarizationSetBy = Automatic
+
+	column market_order
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 8a998a88-d56b-527b-a257-31560082091e
+		summarizeBy: none
+		sourceColumn: market_order
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Markets = m
+		mode: import
+		source =
+				let
+				    Root = Text.TrimEnd(DataFolder, "\") & "\",
+				    Source = Parquet.Document(File.Contents(Root & "markets.parquet"))
+				in
+				    Source
+
+	annotation PBI_ResultType = Table

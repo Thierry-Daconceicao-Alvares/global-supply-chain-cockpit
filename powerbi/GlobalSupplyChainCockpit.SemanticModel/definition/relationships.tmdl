@@ -1,0 +1,19 @@
+relationship 793f5f1a-cb7d-5ca1-ba83-cba1bc23a6dd
+	fromColumn: Sales.country
+	toColumn: Geography.country
+
+relationship 92095564-c209-56d2-9b1f-d01fa78ccaf9
+	fromColumn: Geography.market
+	toColumn: Markets.market
+
+relationship b3fa6e7f-3df8-5457-9213-ae5d53a939c6
+	fromColumn: Sales.product_id
+	toColumn: Products.product_id
+
+relationship b04ee644-9fc7-512f-b720-023e8280002f
+	fromColumn: Sales.shipping_mode
+	toColumn: ShippingModes.shipping_mode
+
+relationship 24b5927a-1d95-54c3-a181-e52535cf1136
+	fromColumn: Sales.order_date
+	toColumn: Dates.date

@@ -1,0 +1,5 @@
+/// Folder of the Parquet files (the data folder next to the .pbip file).
+expression DataFolder = "C:\GlobalSupplyChainCockpit\data" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: 80f375ad-3dd8-586b-b752-706ee4b315b2
+
+	annotation PBI_ResultType = Text

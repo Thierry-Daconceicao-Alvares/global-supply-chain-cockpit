@@ -1,0 +1,86 @@
+{
+  "name": "Global Supply Chain Cockpit",
+  "dataColors": [
+    "#4F5BD5",
+    "#12A594",
+    "#F5A524",
+    "#E5484D",
+    "#8E6CEF",
+    "#3B9EEB",
+    "#0B1F44",
+    "#9AA4B2"
+  ],
+  "foreground": "#14213D",
+  "foregroundNeutralSecondary": "#6B7280",
+  "foregroundNeutralTertiary": "#9AA4B2",
+  "background": "#FFFFFF",
+  "backgroundLight": "#F7F9FC",
+  "backgroundNeutral": "#E6EAF2",
+  "tableAccent": "#4F5BD5",
+  "good": "#12A594",
+  "neutral": "#F5A524",
+  "bad": "#E5484D",
+  "maximum": "#4F5BD5",
+  "center": "#C7CCF4",
+  "minimum": "#EEF0FB",
+  "textClasses": {
+    "callout": {
+      "fontSize": 22,
+      "fontFace": "Segoe UI Semibold",
+      "color": "#14213D"
+    },
+    "title": {
+      "fontSize": 12,
+      "fontFace": "Segoe UI Semibold",
+      "color": "#14213D"
+    },
+    "header": {
+      "fontSize": 11,
+      "fontFace": "Segoe UI Semibold",
+      "color": "#14213D"
+    },
+    "label": {
+      "fontSize": 10,
+      "fontFace": "Segoe UI",
+      "color": "#6B7280"
+    }
+  },
+  "visualStyles": {
+    "*": {
+      "*": {
+        "background": [
+          {
+            "show": false
+          }
+        ],
+        "border": [
+          {
+            "show": false
+          }
+        ],
+        "dropShadow": [
+          {
+            "show": false
+          }
+        ],
+        "visualHeader": [
+          {
+            "show": false
+          }
+        ],
+        "title": [
+          {
+            "show": false
+          }
+        ],
+        "visualTooltip": [
+          {
+            "titleFontColor": "#14213D",
+            "valueFontColor": "#14213D",
+            "background": "#FFFFFF"
+          }
+        ]
+      }
+    }
+  }
+}

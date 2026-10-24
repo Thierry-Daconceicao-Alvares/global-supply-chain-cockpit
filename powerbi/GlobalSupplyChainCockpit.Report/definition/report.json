@@ -1,0 +1,89 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/report/3.0.0/schema.json",
+  "themeCollection": {
+    "baseTheme": {
+      "name": "CY24SU10",
+      "reportVersionAtImport": {
+        "visual": "2.2.0",
+        "page": "2.0.0",
+        "report": "3.0.0"
+      },
+      "type": "SharedResources"
+    },
+    "customTheme": {
+      "name": "GlobalSupplyChainCockpit.json",
+      "reportVersionAtImport": {
+        "visual": "2.2.0",
+        "page": "2.0.0",
+        "report": "3.0.0"
+      },
+      "type": "RegisteredResources"
+    }
+  },
+  "resourcePackages": [
+    {
+      "name": "SharedResources",
+      "type": "SharedResources",
+      "items": [
+        {
+          "name": "CY24SU10",
+          "path": "BaseThemes/CY24SU10.json",
+          "type": "BaseTheme"
+        }
+      ]
+    },
+    {
+      "name": "RegisteredResources",
+      "type": "RegisteredResources",
+      "items": [
+        {
+          "name": "GlobalSupplyChainCockpit.json",
+          "path": "GlobalSupplyChainCockpit.json",
+          "type": "CustomTheme"
+        },
+        {
+          "name": "bg_overview.png",
+          "path": "bg_overview.png",
+          "type": "Image"
+        },
+        {
+          "name": "bg_delivery.png",
+          "path": "bg_delivery.png",
+          "type": "Image"
+        },
+        {
+          "name": "bg_profit.png",
+          "path": "bg_profit.png",
+          "type": "Image"
+        },
+        {
+          "name": "bg_markets.png",
+          "path": "bg_markets.png",
+          "type": "Image"
+        },
+        {
+          "name": "bg_risk.png",
+          "path": "bg_risk.png",
+          "type": "Image"
+        },
+        {
+          "name": "bg_profile.png",
+          "path": "bg_profile.png",
+          "type": "Image"
+        },
+        {
+          "name": "bg_tooltip.png",
+          "path": "bg_tooltip.png",
+          "type": "Image"
+        }
+      ]
+    }
+  ],
+  "settings": {
+    "useStylableVisualContainerHeader": true,
+    "exportDataMode": "AllowSummarized",
+    "defaultDrillFilterOtherVisuals": true,
+    "allowChangeFilterTypes": true,
+    "useEnhancedTooltips": true
+  }
+}

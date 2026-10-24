@@ -1,0 +1,61 @@
+/// Products, categories and departments.
+table Products
+	lineageTag: 8999fc3a-5c94-5291-abe1-58ff1d377a94
+
+	column product_id
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: ddd5f8cc-1731-54e1-8681-e8ebd16520ca
+		summarizeBy: none
+		sourceColumn: product_id
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Product.
+	column product
+		dataType: string
+		lineageTag: 17a969a1-206d-55af-9b8b-bcd5b6f125e9
+		summarizeBy: none
+		sourceColumn: product
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Product category.
+	column category
+		dataType: string
+		lineageTag: 55f2dab6-8dd7-5579-87a6-4471f973046e
+		summarizeBy: none
+		sourceColumn: category
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Department.
+	column department
+		dataType: string
+		lineageTag: 7ba5a0c7-2cfd-56d1-b340-754348c162f7
+		summarizeBy: none
+		sourceColumn: department
+
+		annotation SummarizationSetBy = Automatic
+
+	/// List price.
+	column list_price
+		dataType: double
+		formatString: $#,0.00
+		lineageTag: ad3c96bd-9502-50f6-87a9-9475c2a8b28e
+		summarizeBy: none
+		sourceColumn: list_price
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Products = m
+		mode: import
+		source =
+				let
+				    Root = Text.TrimEnd(DataFolder, "\") & "\",
+				    Source = Parquet.Document(File.Contents(Root & "products.parquet"))
+				in
+				    Source
+
+	annotation PBI_ResultType = Table

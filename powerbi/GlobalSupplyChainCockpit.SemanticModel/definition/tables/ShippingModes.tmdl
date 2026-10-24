@@ -1,0 +1,44 @@
+/// Shipping modes and the shipping days they promise.
+table ShippingModes
+	lineageTag: 9246051c-929c-5ff0-be67-40928cc9826b
+
+	/// Shipping mode.
+	column shipping_mode
+		dataType: string
+		lineageTag: 2923081b-9aec-5e7d-87dc-eeae290e6cf1
+		summarizeBy: none
+		sourceColumn: shipping_mode
+		sortByColumn: mode_order
+
+		annotation SummarizationSetBy = Automatic
+
+	column mode_order
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 3c746f7d-e307-5b17-95c5-a186369279d1
+		summarizeBy: none
+		sourceColumn: mode_order
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Scheduled shipping days.
+	column promised_days
+		dataType: int64
+		formatString: 0
+		lineageTag: 9507324c-0967-5b41-a6df-cceb285a8bf2
+		summarizeBy: none
+		sourceColumn: promised_days
+
+		annotation SummarizationSetBy = Automatic
+
+	partition ShippingModes = m
+		mode: import
+		source =
+				let
+				    Root = Text.TrimEnd(DataFolder, "\") & "\",
+				    Source = Parquet.Document(File.Contents(Root & "shipping_modes.parquet"))
+				in
+				    Source
+
+	annotation PBI_ResultType = Table

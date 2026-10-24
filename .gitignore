@@ -1,0 +1,6 @@
+data/raw/DataCoSupplyChainDataset.csv
+build/
+__pycache__/
+*.pyc
+**/.pbi/localSettings.json
+**/.pbi/cache.abf

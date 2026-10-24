@@ -1,0 +1,274 @@
+/// Measures of the report, grouped in display folders.
+table _Measures
+	lineageTag: 983e4056-31c3-57e3-a29d-2597557b664c
+
+	/// Sales net of discounts.
+	measure Revenue = SUM ( Sales[revenue_amt] )
+		formatString: $#,0
+		displayFolder: Sales
+		lineageTag: f304f22d-c316-5fa4-88dd-e6f71952501f
+
+	/// Sales before discounts.
+	measure 'Gross Sales' = SUM ( Sales[gross_sales_amt] )
+		formatString: $#,0
+		displayFolder: Sales
+		lineageTag: 1da6e055-92db-504d-a375-1d63d7630404
+
+	/// Discounts granted.
+	measure Discounts = SUM ( Sales[discount_amt] )
+		formatString: $#,0
+		displayFolder: Sales
+		lineageTag: 6c31c32c-2832-5203-a99c-02436008e27a
+
+	/// Discounts / gross sales.
+	measure 'Discount Rate' = DIVIDE ( [Discounts], [Gross Sales] )
+		formatString: 0.0%
+		displayFolder: Sales
+		lineageTag: 97c3081e-36e3-5d3c-9f2d-5f182a506904
+
+	/// Profit as given in the source.
+	measure Profit = SUM ( Sales[profit_amt] )
+		formatString: $#,0
+		displayFolder: Sales
+		lineageTag: 34876bf1-1440-5cb9-8e0c-192eedb799b0
+
+	/// Profit / revenue.
+	measure 'Profit Margin' = DIVIDE ( [Profit], [Revenue] )
+		formatString: 0.0%
+		displayFolder: Sales
+		lineageTag: 990a87ea-a9a5-5992-93fc-83c125e5915f
+
+	/// Number of orders.
+	measure Orders = DISTINCTCOUNT ( Sales[order_id] )
+		formatString: #,0
+		displayFolder: Sales
+		lineageTag: cb47c86d-c1d9-55dc-b44f-3fff44e9af26
+
+	/// Units ordered.
+	measure Items = SUM ( Sales[quantity] )
+		formatString: #,0
+		displayFolder: Sales
+		lineageTag: 05caeb86-e2f7-5753-8306-2f6110af2b77
+
+	/// Units per order.
+	measure 'Items per Order' = DIVIDE ( [Items], [Orders] )
+		formatString: 0.00
+		displayFolder: Sales
+		lineageTag: 17c9efec-716c-56f2-a1cc-0c71e3bc7507
+
+	/// Distinct customers.
+	measure Customers = DISTINCTCOUNT ( Sales[customer_id] )
+		formatString: #,0
+		displayFolder: Sales
+		lineageTag: 611790f2-147d-5183-8f92-3294b59ee9c7
+
+	/// Revenue per order.
+	measure 'Avg Order Value' = DIVIDE ( [Revenue], [Orders] )
+		formatString: $#,0
+		displayFolder: Sales
+		lineageTag: 1dfa2900-fe9b-5811-bde8-e3c8647e23b0
+
+	/// Revenue per customer.
+	measure 'Revenue per Customer' = DIVIDE ( [Revenue], [Customers] )
+		formatString: $#,0
+		displayFolder: Sales
+		lineageTag: 1c9b2e18-6896-518a-9a9d-694295db66cd
+
+	/// Share of order lines sold at a loss.
+	measure 'Loss Lines %' = DIVIDE ( CALCULATE ( COUNTROWS ( Sales ), Sales[is_loss] = 1 ), COUNTROWS ( Sales ) )
+		formatString: 0.0%
+		displayFolder: Sales
+		lineageTag: a2ff7ad2-f4a2-5aac-bf96-469a8dda687b
+
+	/// Losses on the lines sold below cost (positive number).
+	measure 'Loss Amount' = - CALCULATE ( SUM ( Sales[profit_amt] ), Sales[is_loss] = 1 )
+		formatString: $#,0
+		displayFolder: Sales
+		lineageTag: 0d87faba-f7bb-5ecc-9dc8-d258e003cad1
+
+	/// Orders whose shipment was not cancelled.
+	measure 'Shipped Orders' = CALCULATE ( DISTINCTCOUNT ( Sales[order_id] ), Sales[shipped] = 1 )
+		formatString: #,0
+		displayFolder: Delivery
+		lineageTag: e0224c61-ccd7-5062-88d5-a7161836392c
+
+	/// Orders delivered after the scheduled date.
+	measure 'Late Orders' = CALCULATE ( DISTINCTCOUNT ( Sales[order_id] ), Sales[is_late] = 1 )
+		formatString: #,0
+		displayFolder: Delivery
+		lineageTag: a930cd14-045f-57e8-a08f-cbafbd520e39
+
+	/// Share of shipped orders delivered late.
+	measure 'Late Rate' = DIVIDE ( [Late Orders], [Shipped Orders] )
+		formatString: 0.0%
+		displayFolder: Delivery
+		lineageTag: 37899c56-7647-5aa0-81db-38cb57c4bcf7
+
+	/// Days of delay still counted as on time (what-if, 0 by default).
+	measure 'Tolerance Value' = SELECTEDVALUE ( 'Delay Tolerance'[Delay Tolerance], 0 )
+		formatString: 0
+		displayFolder: Delivery
+		lineageTag: a5b979f5-8301-5f07-8506-ee084a8f13bc
+
+	/// Share of shipped orders delivered within the scheduled days plus the tolerance.
+	measure 'On Time Within Tolerance' =
+			VAR t = [Tolerance Value]
+			RETURN
+			    DIVIDE (
+			        COALESCE ( CALCULATE ( DISTINCTCOUNT ( Sales[order_id] ), Sales[shipped] = 1, Sales[delay_days] <= t ), 0 ),
+			        [Shipped Orders]
+			    )
+		formatString: 0.0%
+		displayFolder: Delivery
+		lineageTag: 4084d414-97c3-5078-941b-369187ca183a
+
+	/// Average days of delay of the late orders.
+	measure 'Avg Delay Late' = CALCULATE ( AVERAGE ( Sales[delay_days] ), Sales[is_late] = 1 )
+		formatString: "0.0"" days"""
+		displayFolder: Delivery
+		lineageTag: 77d729a9-eddc-5a6a-98a0-c216fa3ccbaf
+
+	/// Average scheduled shipping days.
+	measure 'Avg Days Scheduled' = CALCULATE ( AVERAGE ( Sales[days_scheduled] ), Sales[shipped] = 1 )
+		formatString: "0.0"" d"""
+		displayFolder: Delivery
+		lineageTag: 3f22a0f9-66a5-565c-bd08-54f5e23146b1
+
+	/// Average actual shipping days.
+	measure 'Avg Days Real' = CALCULATE ( AVERAGE ( Sales[days_real] ), Sales[shipped] = 1 )
+		formatString: "0.0"" d"""
+		displayFolder: Delivery
+		lineageTag: f377d82c-8773-592a-ba0e-efc6f21698dd
+
+	/// Revenue of the orders delivered late.
+	measure 'Revenue Delivered Late' = CALCULATE ( [Revenue], Sales[is_late] = 1 )
+		formatString: $#,0
+		displayFolder: Delivery
+		lineageTag: 49169269-7bed-5566-87a6-2666c68a3add
+
+	/// Orders whose shipment was cancelled.
+	measure 'Cancelled Orders' = CALCULATE ( DISTINCTCOUNT ( Sales[order_id] ), Sales[is_cancelled] = 1 )
+		formatString: #,0
+		displayFolder: Delivery
+		lineageTag: c482d7d2-30c2-5f81-99b3-feae8e01f7e9
+
+	/// Revenue of the cancelled shipments.
+	measure 'Cancelled Revenue' = CALCULATE ( [Revenue], Sales[is_cancelled] = 1 )
+		formatString: $#,0
+		displayFolder: Delivery
+		lineageTag: 8241cccb-5f03-5e42-bfe7-b183a208e843
+
+	/// Orders with the status Suspected fraud.
+	measure 'Fraud Orders' = CALCULATE ( DISTINCTCOUNT ( Sales[order_id] ), Sales[is_fraud] = 1 )
+		formatString: #,0
+		displayFolder: Risk
+		lineageTag: e5f5c6b3-4783-518d-87b6-c9d61376b074
+
+	/// Share of orders suspected of fraud.
+	measure 'Fraud Rate' = DIVIDE ( COALESCE ( [Fraud Orders], 0 ), [Orders] )
+		formatString: 0.0%
+		displayFolder: Risk
+		lineageTag: 2315b376-5b10-55eb-a84b-e0fe7aa2c74b
+
+	/// Revenue of the orders suspected of fraud.
+	measure 'Fraud Revenue' = CALCULATE ( [Revenue], Sales[is_fraud] = 1 )
+		formatString: $#,0
+		displayFolder: Risk
+		lineageTag: 9c34ad6d-e096-5d09-b714-b49417abd08d
+
+	/// Share of bank-transfer orders suspected of fraud.
+	measure 'Fraud Rate Transfers' = CALCULATE ( [Fraud Rate], Sales[payment_type] = "Transfer" )
+		formatString: 0.0%
+		displayFolder: Risk
+		lineageTag: eee38105-4b72-50ea-a24b-de8ef7e61c23
+
+	/// Red from 70% late, amber from 50%, green below.
+	measure 'Late Color' =
+			VAR r = [Late Rate]
+			RETURN
+			    SWITCH ( TRUE (), ISBLANK ( r ), "#CBD5E1", r >= 0.7, "#E5484D", r >= 0.5, "#F5A524", "#12A594" )
+		displayFolder: Colours
+		lineageTag: bcd5661a-5428-5632-8f15-a95d1013a788
+
+	/// Heatmap colour of the margin.
+	measure 'Margin Heat Color' =
+			VAR m = [Profit Margin]
+			RETURN
+			    SWITCH ( TRUE (), ISBLANK ( m ), "#FFFFFF", m >= 0.125, "#0B7A6A", m >= 0.12, "#2FA898", m >= 0.115, "#A5E0D6", "#E6F5F2" )
+		displayFolder: Colours
+		lineageTag: 11431623-cdad-599f-9acf-34e32332b36c
+
+	/// Text colour on the heatmap.
+	measure 'Margin Heat Font' = IF ( [Profit Margin] >= 0.12, "#FFFFFF", "#14213D" )
+		displayFolder: Colours
+		lineageTag: 57d3e29d-9724-58cd-960f-cbf561da2f85
+
+	/// Red below 0, amber below 10%, green above.
+	measure 'Margin Color' =
+			VAR m = [Profit Margin]
+			RETURN
+			    SWITCH ( TRUE (), ISBLANK ( m ), "#CBD5E1", m < 0, "#E5484D", m < 0.1, "#F5A524", "#12A594" )
+		displayFolder: Colours
+		lineageTag: 4e154162-92de-5e46-96c5-364216ad4ebe
+
+	/// Country in context.
+	measure 'Selected Country' = SELECTEDVALUE ( Geography[country], "All countries" )
+		displayFolder: Labels
+		lineageTag: ce387906-10ea-55fd-a003-48052649f14b
+
+	/// Shipping mode with the highest late rate.
+	measure 'Insight Delivery' =
+			VAR t = TOPN ( 1, ALLSELECTED ( ShippingModes[shipping_mode] ), [Late Rate], DESC )
+			VAR n = MAXX ( t, ShippingModes[shipping_mode] )
+			VAR r = CALCULATE ( [Late Rate], ShippingModes[shipping_mode] = n )
+			VAR sc = CALCULATE ( [Avg Days Scheduled], ShippingModes[shipping_mode] = n )
+			VAR rl = CALCULATE ( [Avg Days Real], ShippingModes[shipping_mode] = n )
+			RETURN
+			    IF ( ISBLANK ( n ), "No data in this selection",
+			        n & ": " & FORMAT ( r, "0%" ) & " late, " & FORMAT ( sc, "0" ) & " day promised, " & FORMAT ( rl, "0.0" ) & " taken" )
+		displayFolder: Insights
+		lineageTag: 6cbfb710-1906-56fe-931e-5071db82b0be
+
+	/// Range of late rates across regions.
+	measure 'Insight Geography' =
+			VAR lo = MINX ( ALLSELECTED ( Geography[region] ), [Late Rate] )
+			VAR hi = MAXX ( ALLSELECTED ( Geography[region] ), [Late Rate] )
+			RETURN
+			    IF ( ISBLANK ( hi ), "No data in this selection",
+			        "Every region is late on " & FORMAT ( lo, "0%" ) & " to " & FORMAT ( hi, "0%" ) & " of orders: geography is not the cause, the shipping promise is." )
+		displayFolder: Insights
+		lineageTag: 1f5ebe8b-b67a-50a0-a5cf-e5c0cafc48df
+
+	/// Losses on lines sold below cost, compared with total profit.
+	measure 'Insight Margin' =
+			VAR l = [Loss Amount]
+			VAR p = [Profit]
+			VAR s = [Loss Lines %]
+			RETURN
+			    IF ( ISBLANK ( p ), "No data in this selection",
+			        FORMAT ( s, "0%" ) & " of lines sold below cost: -" & FORMAT ( l / 1000000, "$#,0.0" ) & "M vs " & FORMAT ( p / 1000000, "$#,0.0" ) & "M profit" )
+		displayFolder: Insights
+		lineageTag: b5f1702b-f78c-5d72-8974-3e8a7e3572d2
+
+	/// Concentration of suspected fraud on bank transfers.
+	measure 'Insight Fraud' =
+			VAR f = [Fraud Orders]
+			VAR ft = CALCULATE ( [Fraud Orders], Sales[payment_type] = "Transfer" )
+			RETURN
+			    IF ( ISBLANK ( f ), "No suspected fraud in this selection",
+			        FORMAT ( DIVIDE ( ft, f ), "0%" ) & " by transfer · " & FORMAT ( [Fraud Rate Transfers], "0.0%" ) & " of transfers flagged" )
+		displayFolder: Insights
+		lineageTag: 24ad64ed-e41e-527c-8eeb-03672445e284
+
+	column Value
+		isHidden
+		lineageTag: 063dd44a-177f-54e8-b883-aa9255b38f2e
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Value]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition _Measures = calculated
+		mode: import
+		source = ROW ( "Value", BLANK () )

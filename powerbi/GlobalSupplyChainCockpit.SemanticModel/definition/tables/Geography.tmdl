@@ -1,0 +1,42 @@
+/// Countries of delivery, with their region and market.
+table Geography
+	lineageTag: fb9fd417-e614-577b-81d8-28f086ea48f7
+
+	/// Country of delivery.
+	column country
+		dataType: string
+		dataCategory: Country
+		lineageTag: 7fe64287-6377-56a1-b26c-6e775b95dcfc
+		summarizeBy: none
+		sourceColumn: country
+
+		annotation SummarizationSetBy = Automatic
+
+	column market
+		dataType: string
+		isHidden
+		lineageTag: 9fbd86cf-e1af-5318-9fb7-1f17cacb5636
+		summarizeBy: none
+		sourceColumn: market
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Region of delivery.
+	column region
+		dataType: string
+		lineageTag: 444df8c0-582a-53ec-984d-23608e072235
+		summarizeBy: none
+		sourceColumn: region
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Geography = m
+		mode: import
+		source =
+				let
+				    Root = Text.TrimEnd(DataFolder, "\") & "\",
+				    Source = Parquet.Document(File.Contents(Root & "geography.parquet"))
+				in
+				    Source
+
+	annotation PBI_ResultType = Table

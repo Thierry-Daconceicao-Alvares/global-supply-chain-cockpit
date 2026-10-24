@@ -1,0 +1,85 @@
+/// Calendar, January 2015 to September 2017.
+table Dates
+	dataCategory: Time
+	lineageTag: b67d85e1-dbab-5757-8431-7022a857897b
+
+	column date
+		dataType: dateTime
+		isKey
+		formatString: dd mmm yyyy
+		lineageTag: 5cf26b43-5fe0-51a3-b024-4a30237db53a
+		summarizeBy: none
+		sourceColumn: date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	/// Calendar year.
+	column year
+		dataType: int64
+		formatString: 0
+		lineageTag: 2c188f82-820c-55c3-b9bb-bba45a46f048
+		summarizeBy: none
+		sourceColumn: year
+
+		annotation SummarizationSetBy = Automatic
+
+	column quarter
+		dataType: string
+		lineageTag: b4a768ba-cd89-508b-8e39-00e527e6cb83
+		summarizeBy: none
+		sourceColumn: quarter
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Year and quarter.
+	column year_quarter
+		dataType: string
+		lineageTag: c29ddfe4-ddae-5a74-9ce0-0ea9fa1baeaa
+		summarizeBy: none
+		sourceColumn: year_quarter
+
+		annotation SummarizationSetBy = Automatic
+
+	column month_number
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: e040dd1f-b66c-5f31-91fc-6ae61d925d27
+		summarizeBy: none
+		sourceColumn: month_number
+
+		annotation SummarizationSetBy = Automatic
+
+	column month
+		dataType: string
+		lineageTag: 5c14fa15-4a30-5bcb-8c71-ddf8581d9a54
+		summarizeBy: none
+		sourceColumn: month
+		sortByColumn: month_number
+
+		annotation SummarizationSetBy = Automatic
+
+	/// First day of the month.
+	column month_start
+		dataType: dateTime
+		formatString: mmm yyyy
+		lineageTag: 0d7e34dc-24ff-5c24-8bd0-665ef92c8d7e
+		summarizeBy: none
+		sourceColumn: month_start
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition Dates = m
+		mode: import
+		source =
+				let
+				    Root = Text.TrimEnd(DataFolder, "\") & "\",
+				    Source = Parquet.Document(File.Contents(Root & "dates.parquet"))
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
